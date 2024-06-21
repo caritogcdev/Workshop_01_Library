@@ -24,7 +24,7 @@ public class ReservationEntity {
     private LocalDate reservationDate;
 
     @Column(nullable = false)
-    private boolean status;
+    private Boolean status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private UserEntity userId;
