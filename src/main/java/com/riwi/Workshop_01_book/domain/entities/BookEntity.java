@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -30,4 +32,21 @@ public class BookEntity {
 
     @Column(length = 20, nullable = false)
     private String isbn;
+
+
+    @OneToMany(
+            fetch = FetchType.EAGER,
+            mappedBy = "bookId",
+            cascade = CascadeType.ALL,
+            orphanRemoval = false
+    )
+    private List<LoanEntity> loans;
+
+    @OneToMany(
+            fetch = FetchType.EAGER,
+            mappedBy = "bookId",
+            cascade = CascadeType.ALL,
+            orphanRemoval = false
+    )
+    private List<ReservationEntity> reservations;
 }

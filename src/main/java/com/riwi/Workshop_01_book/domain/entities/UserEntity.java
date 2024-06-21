@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -29,5 +31,21 @@ public class UserEntity {
     //@Column(length = 20, nullable = false)
     @Enumerated(EnumType.STRING)
     private RoleUser role;
+
+    @OneToMany(
+            fetch = FetchType.EAGER,
+            mappedBy = "userId",
+            cascade = CascadeType.ALL,
+            orphanRemoval = false
+    )
+    private List<LoanEntity> loans;
+
+    @OneToMany(
+            fetch = FetchType.EAGER,
+            mappedBy = "userId",
+            cascade = CascadeType.ALL,
+            orphanRemoval = false
+    )
+    private List<ReservationEntity> reservations;
 
 }

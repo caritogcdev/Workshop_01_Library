@@ -26,7 +26,10 @@ public class ReservationEntity {
     @Column(nullable = false)
     private boolean status;
 
-    private Long userId;
-    private Long bookId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private UserEntity userId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private BookEntity bookId;
 
 }

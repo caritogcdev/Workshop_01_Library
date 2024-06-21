@@ -1,9 +1,6 @@
 package com.riwi.Workshop_01_book.domain.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +13,7 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity(name = "loan")
 public class LoanEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +27,10 @@ public class LoanEntity {
     @Column(nullable = false)
     private Boolean status;
 
-    private Long userId;
-    private Long bookId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private UserEntity userId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private BookEntity bookId;
 
 }
