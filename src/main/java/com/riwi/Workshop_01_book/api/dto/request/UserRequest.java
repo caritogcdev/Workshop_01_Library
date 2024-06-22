@@ -18,9 +18,9 @@ public class UserRequest {
     @NotBlank(message = "Password is required")
     private String password;
     @NotBlank(message = "Email is required")
+    @Email(message = "Email is invalid")
     private String email;
     @NotBlank(message = "FullName is required")
-    @Email(message = "Email is invalid")
     private String fullName;
     @NotBlank(message = "Role is required")
     private String role;
