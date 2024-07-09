@@ -1,6 +1,7 @@
 package com.riwi.Workshop_01_book.api.controllers;
 
 import com.riwi.Workshop_01_book.api.dto.request.UserRequest;
+import com.riwi.Workshop_01_book.api.dto.response.UserBasicResponse;
 import com.riwi.Workshop_01_book.api.dto.response.UserResponse;
 import com.riwi.Workshop_01_book.infraestructure.abstract_services.IUserService;
 import lombok.AllArgsConstructor;
@@ -9,15 +10,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping(path = "/users")
-public class UserController implements GenericController<UserRequest, UserResponse, Long>{
+public class UserController implements GenericController<UserRequest, UserBasicResponse, Long>{
     @Autowired
     IUserService userService;
 
     @PostMapping
-    public ResponseEntity<UserResponse> create(
+    public ResponseEntity<UserBasicResponse> create(
             @Validated @RequestBody UserRequest request) {
 
         return ResponseEntity.ok(this.userService.create(request));
@@ -25,14 +28,20 @@ public class UserController implements GenericController<UserRequest, UserRespon
 
     @GetMapping(path = "/{id}")
     @Override
-    public ResponseEntity<UserResponse> get(
+    public ResponseEntity<UserBasicResponse> get(
             @PathVariable Long id) {
         return ResponseEntity.ok(userService.get(id));
     }
 
+    @GetMapping
+    @Override
+    public ResponseEntity<List<UserBasicResponse>> getAll(){
+        return ResponseEntity.ok(this.userService.getAll());
+    }
+
     @PutMapping(path = "/{userId}")
     @Override
-    public ResponseEntity<UserResponse> update(
+    public ResponseEntity<UserBasicResponse> update(
             @Validated @RequestBody UserRequest request,
             @PathVariable Long userId) {
         return ResponseEntity.ok(this.userService.update(userId, request));

@@ -1,0 +1,22 @@
+package com.riwi.Workshop_01_book.api.dto.request;
+
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+
+public class ReservationPostRequest {
+    @NotBlank(message = "Reservation Date is required")
+    private LocalDate reservationDate;
+
+    private Long userId;
+    private Long bookId;
+}

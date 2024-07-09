@@ -1,8 +1,8 @@
 package com.riwi.Workshop_01_book.infraestructure.helpers.mappers;
 
-import com.riwi.Workshop_01_book.api.dto.request.UserRequest;
-import com.riwi.Workshop_01_book.api.dto.response.UserBasicResponse;
-import com.riwi.Workshop_01_book.domain.entities.UserEntity;
+import com.riwi.Workshop_01_book.api.dto.request.BookRequest;
+import com.riwi.Workshop_01_book.api.dto.response.BookResponse;
+import com.riwi.Workshop_01_book.domain.entities.BookEntity;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -11,16 +11,12 @@ import org.mapstruct.MappingConstants;
 import java.util.List;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
-public interface UserMapper {
-
+public interface BookMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "loans", ignore = true)
     @Mapping(target = "reservations", ignore = true)
-    UserEntity toUserEntity(UserRequest userRequest);
-
+    BookEntity toBookEntity(BookRequest bookRequest);
     @InheritInverseConfiguration
-    UserBasicResponse toUserResponse(UserEntity userEntity);
-
-    List<UserBasicResponse> UserListToResponseList(List<UserEntity> userEntities);
-
+    BookResponse toBookResponse(BookEntity bookEntity);
+    List<BookResponse> BookListToResponseList(List<BookEntity> bookEntities);
 }

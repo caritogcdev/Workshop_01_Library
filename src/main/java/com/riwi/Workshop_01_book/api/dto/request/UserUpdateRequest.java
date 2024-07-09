@@ -1,6 +1,5 @@
 package com.riwi.Workshop_01_book.api.dto.request;
 
-import com.riwi.Workshop_01_book.util.enums.RoleUser;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -13,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRequest {
+public class UserUpdateRequest {
     @NotBlank(message = "Username is required")
     @Size(min = 0, max = 50, message = "The Username field exceeds the number of characters")
     private String username;
@@ -27,6 +26,4 @@ public class UserRequest {
     @NotBlank(message = "FullName is required")
     @Size(min = 0, max = 100, message = "The FullName field exceeds the number of characters")
     private String fullName;
-    @NotBlank(message = "Role is required")
-    private RoleUser role;
 }
